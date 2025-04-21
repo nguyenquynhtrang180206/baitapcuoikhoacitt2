@@ -1,0 +1,118 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #dbeafe, #f0f9ff);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Navbar
+  .navbar {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  } */
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=1350&q=80') no-repeat center/cover;
+    color: white;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  /* Main Content */
+  .activity-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+  }
+  
+  .activity-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  
+  .activity-card i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .activity-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Card Color Indicators */
+  .activity-card.good {
+    border-left: 6px solid #16a34a;
+  }
+  
+  .activity-card.warning {
+    border-left: 6px solid #facc15;
+  }
+  
+  .activity-card.danger {
+    border-left: 6px solid #dc2626;
+    animation: shake 0.4s ease infinite alternate;
+  }
+  
+  /* Shake effect for warning cards */
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(4px); }
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e3a8a;
+    color: white;
+    margin-top: auto;
+  }
+  
