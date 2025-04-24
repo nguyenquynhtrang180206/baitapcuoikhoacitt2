@@ -1,22 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font-family: sans-serif;
-  background: linear-gradient(to top, #d0e8f2, #ffffff);
-  margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #87CEEB, #B0E0E6);
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 nav ul {
-  display: flex;
-  background-color: #0077be;
-  list-style: none;
-  padding: 10px;
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
 }
 
 nav ul li a {
-  color: white;
-  text-decoration: none;
-  margin: 0 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
 }
 
-section {
-  padding: 20px;
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+main {
+    padding: 20px;
+}
+
+.weather-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.current-weather {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.humidity, .wind, .feels-like {
+    font-size: 16px;
+}
+
+.icon {
+    font-size: 64px;
+    margin-top: 10px;
+}
+
+.hourly-forecast {
+    margin-top: 20px;
+}
+
+.hourly {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hour {
+    flex: 1 1 80px;
+    text-align: center;
+    margin: 10px;
+    transition: transform 0.3s;
+}
+
+.hour:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.time {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.icon {
+    font-size: 32px;
+    margin: 5px 0;
+}
+
+.temp {
+    font-size: 18px;
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
 }
