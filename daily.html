@@ -1,32 +1,120 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Hàng ngày</title>
-  <link rel="stylesheet" href="daily.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dự báo hàng ngày</title>
+  <link rel="stylesheet" href="btl.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <div class="logo">🌦️ Dự báo thời tiết</div>
     <nav>
-      <ul>
-        <li><a href="../today/today.html">Hôm nay</a></li>
-        <li><a href="../daily/daily.html">Hàng ngày</a></li>
-        <li><a href="../air/air.html">Không khí</a></li>
-        <li><a href="../health/health.html">Sức khỏe</a></li>
-      </ul>
+      <a href="today.html">Hôm nay</a>
+      <a href="daily.html" class="active">Hàng ngày</a>
+      <a href="air.html">Không khí</a>
+      <a href="health.html">Sức khỏe</a>
     </nav>
   </header>
 
+  <section class="banner">
+    <h1>Dự báo 7 ngày</h1>
+  </section>
+
   <main>
-    <section id="daily-forecast">
-      <h2>Dự báo 7 ngày tới</h2>
-    </section>
+    
+      <div class="day-card" onclick="showDetails(this)" 
+      data-day="Thứ Hai" 
+      data-morning="26°C" data-noon="33°C" data-night="27°C"
+      data-humidity="70%" data-wind="10km/h" data-feels="31°C">
+      <div class="day">Thứ 2</div>
+      <img src="sun.png" alt="Nắng">
+      <div class="temp">33° / 25°</div>
+      <div class="rain">☔ 20%</div>
+    </div>
+    
+    <div class="day-card" onclick="showDetails(this)" 
+      data-day="Thứ Ba" 
+      data-morning="27°C" data-noon="34°C" data-night="28°C"
+      data-humidity="68%" data-wind="12km/h" data-feels="32°C">
+      <div class="day">Thứ 3</div>
+      <img src="cloudy.png" alt="Ít mây">
+      <div class="temp">34° / 26°</div>
+      <div class="rain">☔ 10%</div>
+    </div>
+    
+    <div class="day-card" onclick="showDetails(this)" 
+      data-day="Thứ Tư" 
+      data-morning="25°C" data-noon="31°C" data-night="26°C"
+      data-humidity="75%" data-wind="9km/h" data-feels="30°C">
+      <div class="day">Thứ 4</div>
+      <img src="many cloud.png" alt="Nhiều mây">
+      <div class="temp">31° / 24°</div>
+      <div class="rain">☔ 30%</div>
+    </div>
+    
+    <div class="day-card" onclick="showDetails(this)" 
+      data-day="Thứ Năm" 
+      data-morning="24°C" data-noon="29°C" data-night="25°C"
+      data-humidity="85%" data-wind="8km/h" data-feels="29°C">
+      <div class="day">Thứ 5</div>
+      <img src="mưa.png" alt="Mưa">
+      <div class="temp">29° / 23°</div>
+      <div class="rain">☔ 70%</div>
+    </div>
+    
+    <div class="day-card" onclick="showDetails(this)" 
+      data-day="Thứ Sáu" 
+      data-morning="23°C" data-noon="28°C" data-night="24°C"
+      data-humidity="90%" data-wind="10km/h" data-feels="28°C">
+      <div class="day">Thứ 6</div>
+      <img src="storm.png" alt="Giông bão">
+      <div class="temp">28° / 22°</div>
+      <div class="rain">☔ 90%</div>
+    </div>
+    
+    <div class="day-card" onclick="showDetails(this)" 
+      data-day="Thứ Bảy" 
+      data-morning="25°C" data-noon="32°C" data-night="26°C"
+      data-humidity="65%" data-wind="13km/h" data-feels="30°C">
+      <div class="day">Thứ 7</div>
+      <img src="sun.png" alt="Nắng">
+      <div class="temp">32° / 24°</div>
+      <div class="rain">☔ 10%</div>
+    </div>
+    
+    <div class="day-card" onclick="showDetails(this)" 
+      data-day="Chủ Nhật" 
+      data-morning="26°C" data-noon="33°C" data-night="27°C"
+      data-humidity="70%" data-wind="11km/h" data-feels="31°C">
+      <div class="day">CN</div>
+      <img src="cloudy.png" alt="Ít mây">
+      <div class="temp">33° / 25°</div>
+      <div class="rain">☔ 20%</div>
+    </div>
+    
+
+    
+
+    <div id="detail-box" class="detail hidden">
+      <h2 id="detail-day">Chi tiết ngày</h2>
+      <ul>
+        <li><strong>Sáng:</strong> <span id="morning"></span></li>
+        <li><strong>Trưa:</strong> <span id="noon"></span></li>
+        <li><strong>Tối:</strong> <span id="night"></span></li>
+        <li><strong>Độ ẩm:</strong> <span id="humidity"></span></li>
+        <li><strong>Gió:</strong> <span id="wind"></span></li>
+        <li><strong>Cảm giác như:</strong> <span id="feels"></span></li>
+      </ul>
+    </div>
   </main>
 
   <footer>
-    <p>Nhóm dự báo thời tiết – 2025</p>
+    <p>© Nhóm 4 – Mô phỏng theo AccuWeather</p>
   </footer>
 
-  <script src="daily.js"></script>
+  
+ 
 </body>
 </html>
