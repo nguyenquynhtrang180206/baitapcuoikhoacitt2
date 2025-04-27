@@ -12,6 +12,74 @@ body {
   line-height: 1.6;
   overflow-x: hidden; /* Ngăn cuộn ngang */
 }
+/* Header */
+header {
+  background: linear-gradient(to right, #4dd0e1, #80cbc4);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeInDown 0.5s ease-out;
+}
+
+/* Nav links */
+nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Icon trong nav */
+nav a i {
+  font-size: 1.2rem;
+}
+
+/* Chữ trong nav */
+nav a span {
+  position: relative;
+}
+
+/* Gạch chân mặc định "Hàng ngày" */
+nav a.underline span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+/* Hover: gạch chân chữ */
+nav a:hover span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+/* Animation logo */
+@keyframes fadeInDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 
 /* Header */
 header {
@@ -54,6 +122,49 @@ nav a:hover:before,
 nav a.active:before {
   width: 100%;
 }
+nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Icon trong nav */
+nav a i {
+  font-size: 1.2rem;
+}
+
+/* Gạch chân chỉ chữ (span) */
+nav a span {
+  position: relative;
+}
+
+/* Gạch chân riêng "Hàng ngày" */
+nav a.underline span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+/* Hover tất cả menu: thêm underline */
+nav a:hover span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
 
 /* Banner */
 .banner {
