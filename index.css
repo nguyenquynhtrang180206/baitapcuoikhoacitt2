@@ -1,19 +1,17 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 
 body {
   background: linear-gradient(to right, #e0f7fa, #80deea);
-  color: #333;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header */
 header {
   background-color: #0288d1;
   color: white;
@@ -41,41 +39,48 @@ nav a.active {
   text-decoration: underline;
 }
 
-/* Banner */
 .banner {
-  text-align: center;
-  padding: 50px 20px;
   background: url('pexels-pixabay-414659.jpg') center/cover no-repeat;
   background-blend-mode: overlay;
-  background-color: rgba(2, 136, 209, 0.5);
+  background-color: rgba(2, 136, 209, 0.6);
+  text-align: center;
   color: white;
+  padding: 60px 20px;
 }
 
 .banner h1 {
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .banner p {
   font-size: 1.2rem;
 }
 
-/* Main content */
 main {
+  flex: 1;
   padding: 40px 20px;
-  flex-grow: 1;
+}
+
+.intro h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0288d1;
+  font-size: 2rem;
 }
 
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .feature-card {
   background: white;
-  padding: 20px;
   border-radius: 15px;
+  padding: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
@@ -86,9 +91,9 @@ main {
   background-color: #e0f7fa;
 }
 
-.feature-card h2 {
-  margin-bottom: 10px;
+.feature-card h3 {
   color: #0288d1;
+  margin-bottom: 10px;
 }
 
 .feature-card p {
@@ -102,11 +107,9 @@ main {
   text-decoration: none;
 }
 
-/* Footer */
 footer {
+  background-color: #0288d1;
+  color: white;
   text-align: center;
   padding: 15px;
-  background: #0288d1;
-  color: white;
 }
-
