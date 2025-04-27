@@ -14,7 +14,7 @@ async function fetchWeather() {
     document.getElementById('feels-like').textContent = `Cảm giác như: ${Math.round(weatherData.main.feels_like)}°C`;
     document.getElementById('humidity').textContent = `Độ ẩm: ${weatherData.main.humidity}%`;
     document.getElementById('wind-speed').textContent = `Gió: ${weatherData.wind.speed} m/s`;
-    document.getElementById('current-icon').src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
+    document.getElementById('current-icon').src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`; // ✅ sửa http -> https
 
     // Cập nhật giờ hiện tại
     updateCurrentTime();
@@ -26,12 +26,12 @@ async function fetchWeather() {
     const hourlyGrid = document.getElementById('hourly-grid');
     hourlyGrid.innerHTML = '';
 
-    // Lấy 12 giờ tiếp theo (dữ liệu mỗi 3 giờ -> cần lấy gần đúng giờ hiện tại)
+    // Lấy 12 giờ tiếp theo
     const now = new Date();
     const hours = forecastData.list.filter(item => {
       const itemDate = new Date(item.dt * 1000);
       return itemDate > now;
-    }).slice(0, 12); // lấy đúng 12 mục tiếp theo
+    }).slice(0, 12);
 
     hours.forEach(hour => {
       const time = new Date(hour.dt * 1000);
@@ -39,7 +39,7 @@ async function fetchWeather() {
       hourEl.className = 'forecast-hour';
       hourEl.innerHTML = `
         <div>${time.getHours()}:00</div>
-        <img src="http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="icon">
+        <img src="https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="icon"> <!-- ✅ sửa http -> https -->
         <div>${Math.round(hour.main.temp)}°C</div>
       `;
       hourlyGrid.appendChild(hourEl);
