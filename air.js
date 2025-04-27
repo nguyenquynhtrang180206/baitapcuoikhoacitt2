@@ -1,87 +1,58 @@
-const apiKey = 'fcee8e3c23247c9931060785ee8fab70'; // API Key của bạn
-const city = 'Hanoi'; // Thành phố mặc định
+const apiKey = 'fcee8e3c23247c9931060785ee8fab70';
+const city = 'Hanoi';
 
-// Hàm lấy dữ liệu thời tiết
-async function fetchWeatherData() {
+async function fetchAirQuality() {
   try {
-    showLoading(true);
+    // Lấy tọa độ
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
+    const geoData = await geoRes.json();
+    const { lat, lon } = geoData[0];
 
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&lang=vi`;
-    const response = await fetch(forecastUrl);
+    // Lấy dữ liệu air pollution
+    const airRes = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+    const airData = await airRes.json();
+    const aqi = airData.list[0].main.aqi;
+    const components = airData.list[0].components;
 
-    if (!response.ok) throw new Error('Không thể kết nối tới API');
+    // Hiển thị AQI tổng
+    document.getElementById('aqi-value').innerText = aqi;
+    document.getElementById('aqi-description').innerText = describeAQI(aqi);
 
-    const data = await response.json();
+    // Đổi màu banner theo AQI
+    const banner = document.getElementById('banner');
+    switch (aqi) {
+      case 1: banner.style.background = 'linear-gradient(to right, #4ade80, #86efac)'; break; // Xanh
+      case 2: banner.style.background = 'linear-gradient(to right, #fde047, #facc15)'; break; // Vàng
+      case 3: banner.style.background = 'linear-gradient(to right, #fb923c, #f97316)'; break; // Cam
+      case 4: banner.style.background = 'linear-gradient(to right, #f87171, #ef4444)'; break; // Đỏ
+      case 5: banner.style.background = 'linear-gradient(to right, #9f1239, #be123c)'; break; // Đỏ đậm
+    }
 
-    if (data.cod !== "200") throw new Error(data.message);
-
-    // Chỉ lấy bản ghi 12:00:00 mỗi ngày
-    const dailyData = data.list.filter(item => item.dt_txt.includes('12:00:00'));
-
-    renderDayCards(dailyData);
+    // Load chi tiết chỉ số
+    const pollutantTable = document.getElementById('pollutant-data');
+    pollutantTable.innerHTML = `
+      <tr><td data-tooltip="Bụi mịn PM2.5 - gây hại phổi">${components.pm2_5} µg/m³</td><td>PM2.5</td></tr>
+      <tr><td data-tooltip="Bụi mịn PM10 - gây kích ứng mũi, họng">${components.pm10} µg/m³</td><td>PM10</td></tr>
+      <tr><td data-tooltip="Nitrogen Dioxide - gây viêm phổi">${components.no2} µg/m³</td><td>NO₂</td></tr>
+      <tr><td data-tooltip="Carbon Monoxide - gây ngạt thở">${components.co} µg/m³</td><td>CO</td></tr>
+    `;
+    
+    document.getElementById('aqi-status').innerText = `Chất lượng hiện tại: ${describeAQI(aqi)}`;
 
   } catch (error) {
-    console.error('Lỗi khi lấy dữ liệu thời tiết:', error);
-    alert('Không thể lấy dữ liệu thời tiết! Hãy thử lại sau.');
-  } finally {
-    showLoading(false);
+    console.error('Lỗi:', error);
   }
 }
 
-// Hàm render các thẻ ngày
-function renderDayCards(days) {
-  const container = document.querySelector('.day-cards');
-  container.innerHTML = '';
-
-  days.forEach(day => {
-    const date = new Date(day.dt * 1000);
-    const dayName = date.toLocaleDateString('vi-VN', { weekday: 'long' });
-
-    const card = document.createElement('div');
-    card.className = 'day-card';
-    card.style.animation = 'fadeIn 0.5s ease';
-
-    card.innerHTML = `
-      <div class="day">${dayName}</div>
-      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="${day.weather[0].description}">
-      <div class="temp">${Math.round(day.main.temp_max)}°C / ${Math.round(day.main.temp_min)}°C</div>
-      <div class="rain">🌧️ ${day.pop !== undefined ? Math.round(day.pop * 100) : 0}%</div>
-    `;
-
-    card.addEventListener('click', () => showDetails(day));
-    container.appendChild(card);
-  });
+function describeAQI(aqi) {
+  switch (aqi) {
+    case 1: return "Tốt";
+    case 2: return "Trung bình";
+    case 3: return "Không tốt cho nhạy cảm";
+    case 4: return "Xấu";
+    case 5: return "Rất xấu";
+    default: return "Không xác định";
+  }
 }
 
-// Hàm show chi tiết ngày khi click
-function showDetails(day) {
-  document.getElementById('detail-box').classList.remove('hidden');
-
-  document.getElementById('detail-day').textContent = new Date(day.dt * 1000).toLocaleDateString('vi-VN', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'numeric'
-  });
-
-  document.getElementById('noon').textContent = `${Math.round((day.main.temp_max + day.main.temp_min) / 2)}°C`;
-  document.getElementById('humidity').textContent = `${day.main.humidity}%`;
-  document.getElementById('wind').textContent = `${Math.round(day.wind.speed)} km/h`;
-  document.getElementById('feels').textContent = `${Math.round(day.main.feels_like)}°C`;
-}
-
-// Hàm đóng chi tiết
-function closeDetails() {
-  document.getElementById('detail-box').classList.add('hidden');
-}
-
-// Hàm hiển thị loading
-function showLoading(state) {
-  const loadingText = document.getElementById('loading-text');
-  loadingText.innerHTML = state ? '🔄 Đang tải dữ liệu...' : '';
-}
-
-// Khi trang web load
-window.onload = () => {
-  fetchWeatherData();
-  document.getElementById('close-detail').addEventListener('click', closeDetails);
-};
+window.onload = fetchAirQuality;
