@@ -1,23 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
-    background: linear-gradient(to left, #fbc2eb, #a6c1ee);
-    margin: 0;
-  }
-  
-  nav ul {
-    display: flex;
-    background-color: #444;
-    list-style: none;
-    padding: 10px;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-  }
-  
-  section {
-    padding: 20px;
-  }
-  
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #0288d1;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  position: relative;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
+
+/* Banner */
+.banner {
+  text-align: center;
+  padding: 50px 20px;
+  color: white;
+  transition: background 0.5s ease;
+}
+
+/* Main content */
+.content {
+  padding: 30px 20px;
+  flex-grow: 1;
+}
+
+.aqi-summary {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pollutants {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pollutants th, .pollutants td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.pollutants th {
+  background-color: #0288d1;
+  color: white;
+}
+
+/* Tooltip */
+.pollutants td:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+}
+
+/* Footer */
+footer {
+  background: #0288d1;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+}
