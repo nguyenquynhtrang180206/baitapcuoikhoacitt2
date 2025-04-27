@@ -1,33 +1,34 @@
-const apiKey = 'fcee8e3c23247c9931060785ee8fab70';
-const city = 'Hanoi';
+const apiKey = 'fcee8e3c23247c9931060785ee8fab70'; // API Key của bạn
+const city = 'Hanoi'; // Thành phố mặc định
 
+// Hàm lấy dữ liệu thời tiết
 async function fetchWeatherData() {
   try {
     showLoading(true);
 
-    // Sử dụng HTTPS chuẩn
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&lang=vi`;
     const response = await fetch(forecastUrl);
 
-    if (!response.ok) throw new Error('Lỗi kết nối API');
+    if (!response.ok) throw new Error('Không thể kết nối tới API');
 
     const data = await response.json();
 
     if (data.cod !== "200") throw new Error(data.message);
 
-    // Lấy mỗi ngày 1 lần vào 12h trưa
+    // Chỉ lấy bản ghi 12:00:00 mỗi ngày
     const dailyData = data.list.filter(item => item.dt_txt.includes('12:00:00'));
 
     renderDayCards(dailyData);
 
   } catch (error) {
     console.error('Lỗi khi lấy dữ liệu thời tiết:', error);
-    alert('Không thể lấy dữ liệu thời tiết! Vui lòng thử lại sau.');
+    alert('Không thể lấy dữ liệu thời tiết! Hãy thử lại sau.');
   } finally {
     showLoading(false);
   }
 }
 
+// Hàm render các thẻ ngày
 function renderDayCards(days) {
   const container = document.querySelector('.day-cards');
   container.innerHTML = '';
@@ -52,6 +53,7 @@ function renderDayCards(days) {
   });
 }
 
+// Hàm show chi tiết ngày khi click
 function showDetails(day) {
   document.getElementById('detail-box').classList.remove('hidden');
 
@@ -67,16 +69,18 @@ function showDetails(day) {
   document.getElementById('feels').textContent = `${Math.round(day.main.feels_like)}°C`;
 }
 
+// Hàm đóng chi tiết
 function closeDetails() {
   document.getElementById('detail-box').classList.add('hidden');
 }
 
+// Hàm hiển thị loading
 function showLoading(state) {
   const loadingText = document.getElementById('loading-text');
   loadingText.innerHTML = state ? '🔄 Đang tải dữ liệu...' : '';
 }
 
-// Khi trang web load xong
+// Khi trang web load
 window.onload = () => {
   fetchWeatherData();
   document.getElementById('close-detail').addEventListener('click', closeDetails);
