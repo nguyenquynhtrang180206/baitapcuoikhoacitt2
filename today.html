@@ -1,60 +1,51 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dự báo thời tiết 7 ngày</title>
-  <link rel="stylesheet" href="today.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thời tiết hôm nay</title>
+  <link rel="stylesheet" href="today.css">
 </head>
 <body>
 
-  <!-- Header -->
   <header>
-    <div class="logo">🌦️ Dự báo thời tiết</div>
+    <div class="logo">
+      <i class="fas fa-cloud-sun"></i>Hôm nay
+    </div>
     <nav>
-      <a href="today.html" class="active">Hôm nay</a>
-      <a href="daily.html">Hàng ngày</a>
-      <a href="air.html">Không khí</a>
-      <a href="health.html">Sức khỏe</a>
+      <a href="index.html"><i class="fas fa-home"></i> <span>Trang chủ</span></a>
+      <a href="today.html" class="underline><i class="fas fa-calendar-day"></i> <span>Hôm nay</span></a>
+      <a href="daily.html"><i class="fas fa-calendar-week"></i> <span>Hàng ngày</span></a> <!-- Gạch chân -->
+      <a href="air.html"><i class="fas fa-wind"></i> <span>Không khí</span></a>
+      <a href="health.html"><i class="fas fa-heartbeat"></i> <span>Sức khỏe</span></a>
     </nav>
   </header>
+  
 
-  <!-- Banner -->
-  <section class="banner">
-    <h1>Dự báo 7 ngày tới</h1>
+  <section class="hero">
+    <div class="current-weather">
+      <h1 id="city-name">Đang tải...</h1>
+      <div class="weather-info">
+        <img id="current-icon" src="" alt="Weather Icon">
+        <div>
+          <div id="temperature">--°C</div>
+          <div id="description">---</div>
+          <div id="feels-like">Cảm giác như: --°C</div>
+          <div id="humidity">Độ ẩm: --%</div>
+          <div id="wind-speed">Gió: -- m/s</div>
+        </div>
+      </div>
+      <div id="current-time"></div>
+    </div>
   </section>
 
-  <!-- Main Content -->
-  <main>
-    <div class="day-cards">
-      <!-- Các thẻ ngày sẽ render động -->
+  <section class="hourly-forecast">
+    <h2>Dự báo 12 giờ tới</h2>
+    <div class="forecast-grid" id="hourly-grid">
+      <!-- Các ô giờ sẽ được thêm bằng JS -->
     </div>
+  </section>
 
-    <div id="detail-box" class="detail hidden">
-      <button id="close-detail">Đóng</button>
-      <h2 id="detail-day">Chi tiết ngày</h2>
-      <ul>
-        <li><strong>Sáng:</strong> <span id="morning"></span></li>
-        <li><strong>Trưa:</strong> <span id="noon"></span></li>
-        <li><strong>Tối:</strong> <span id="night"></span></li>
-        <li><strong>Độ ẩm:</strong> <span id="humidity"></span></li>
-        <li><strong>Gió:</strong> <span id="wind"></span></li>
-        <li><strong>Cảm giác như:</strong> <span id="feels"></span></li>
-      </ul>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Nhóm 4 – Mô phỏng AccuWeather</p>
-  </footer>
-
-  <!-- Loading Text -->
-  <div id="loading-text"></div>
-
-  <!-- Script -->
   <script src="today.js"></script>
-
 </body>
 </html>
