@@ -50,9 +50,7 @@ function showDetails(day) {
   document.getElementById('detail-box').classList.remove('hidden');
 
   document.getElementById('detail-day').textContent = new Date(day.dt * 1000).toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'numeric' });
-  document.getElementById('morning').textContent = 'Dữ liệu không có'; // Forecast API không có sáng trưa tối
   document.getElementById('noon').textContent = `${Math.round(day.main.temp)}°C`;
-  document.getElementById('night').textContent = 'Dữ liệu không có';
   document.getElementById('humidity').textContent = `${day.main.humidity}%`;
   document.getElementById('wind').textContent = `${Math.round(day.wind.speed)} km/h`;
   document.getElementById('feels').textContent = `${Math.round(day.main.feels_like)}°C`;
