@@ -2,29 +2,55 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chất lượng không khí</title>
   <link rel="stylesheet" href="air.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
+  <!-- Header -->
   <header>
+    <div class="logo">
+      <i class="fas fa-cloud-sun"></i> Không khí
+    </div>
     <nav>
-      <ul>
-        <li><a href="../today/today.html">Hôm nay</a></li>
-        <li><a href="../daily/daily.html">Hàng ngày</a></li>
-        <li><a href="../air/air.html">Không khí</a></li>
-        <li><a href="../health/health.html">Sức khỏe</a></li>
-      </ul>
+      <a href="index.html"><i class="fas fa-home"></i> <span>Trang chủ</span></a>
+      <a href="today.html"><i class="fas fa-calendar-day"></i> <span>Hôm nay</span></a>
+      <a href="daily.html"><i class="fas fa-calendar-week"></i> <span>Hàng ngày</span></a> <!-- Gạch chân -->
+      <a href="air.html" class="underline"><i class="fas fa-wind"></i> <span>Không khí</span></a>
+      <a href="health.html"><i class="fas fa-heartbeat"></i> <span>Sức khỏe</span></a>
     </nav>
   </header>
 
-  <main>
-    <section id="air-quality">
-      <h2>Chất lượng không khí</h2>
-    </section>
+  <!-- Hero Section -->
+  <section id="banner" class="banner">
+    <h1>Chất lượng không khí hôm nay</h1>
+    <p id="aqi-status">Đang tải dữ liệu...</p>
+  </section>
+
+  <!-- Nội dung chỉ số -->
+  <main class="content">
+    <div class="aqi-summary">
+      <h2>Chỉ số AQI tổng thể: <span id="aqi-value">--</span></h2>
+      <p id="aqi-description">Đang phân tích...</p>
+    </div>
+
+    <table class="pollutants">
+      <thead>
+        <tr>
+          <th>Chỉ số</th>
+          <th>Giá trị</th>
+        </tr>
+      </thead>
+      <tbody id="pollutant-data">
+        <!-- Dữ liệu động sẽ load ở đây -->
+      </tbody>
+    </table>
   </main>
 
   <footer>
-    <p>Nhóm dự báo thời tiết – 2025</p>
+    <p>© 2025 Nhóm 4 - Bài tập cuối khóa CITT2</p>
   </footer>
 
   <script src="air.js"></script>
