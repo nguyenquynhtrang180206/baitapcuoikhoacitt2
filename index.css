@@ -1,1 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #e0f7fa, #80deea);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background-color: #0288d1;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  text-decoration: underline;
+}
+
+/* Banner */
+.banner {
+  text-align: center;
+  padding: 50px 20px;
+  background: url('pexels-pixabay-414659.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+  background-color: rgba(2, 136, 209, 0.5);
+  color: white;
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 1.2rem;
+}
+
+/* Main content */
+main {
+  padding: 40px 20px;
+  flex-grow: 1;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  background-color: #e0f7fa;
+}
+
+.feature-card h2 {
+  margin-bottom: 10px;
+  color: #0288d1;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.feature-card a {
+  color: #0288d1;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #0288d1;
+  color: white;
+}
 
