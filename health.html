@@ -9,21 +9,34 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Dự Báo Hoạt Động</div>
-    <ul>
-      <li><a href="#">Trang chủ</a></li>
-      <li><a href="#">Sức khỏe</a></li>
-      <li><a href="#">Liên hệ</a></li>
-    </ul>
-  </nav>
+  <header>
+    <div class="logo"> Sức khỏe</div>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i> <span>Trang chủ</span></a>
+      <a href="today.html">
+        <i class="fa-solid fa-calendar-day"></i> <span>Hôm nay</span>
+      </a>
+      <a href="daily.html">
+        <i class="fa-solid fa-calendar-week"></i> <span>Hàng ngày</span>
+      </a>
+      <a href="air.html">
+        <i class="fa-solid fa-wind"></i> <span>Không khí</span>
+      </a>
+      <a href="health.html" class="underline">
+        <i class="fa-solid fa-heart-pulse"></i> <span>Sức khỏe</span> <!-- Chỉ chữ gạch chân -->
+      </a>
+    </nav>
+  </header>
+  
+   
 
   <!-- Hero -->
   <section class="hero">
     <h1>Gợi ý Hoạt Động Hôm Nay</h1>
     <p>Dựa trên thời tiết & chất lượng không khí thực tế</p>
-    <div id="weather-info"></div> <!-- Nơi hiển thị icon + mô tả thời tiết -->
+
+    <div id="weather-info"></div>
+    <div id="health-alert"></div>
   </section>
 
   <!-- Nội dung chính -->
@@ -54,6 +67,8 @@
   <footer>
     <p>Nhóm Dự Báo Thời Tiết © 2025 | API: OpenWeather</p>
   </footer>
+
+  <audio id="alert-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alert-alarm-1005.mp3" preload="auto"></audio>
 
   <script src="health.js"></script>
 </body>
