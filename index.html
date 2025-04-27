@@ -1,19 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Website</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    a { display: block; margin: 10px 0; color: blue; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trang chủ - Dự báo thời tiết</title>
+  <link rel="stylesheet" href="index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Welcome to the Weather Website</h1>
-  <a href="today.html">Today</a>
-  <a href="daily.html">Daily</a>
-  <a href="air.html">Air Quality</a>
-  <a href="health.html">Health</a>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">🌤️ Dự Báo Thời Tiết</div>
+    <nav>
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="today.html">Hôm nay</a>
+      <a href="daily.html">Hàng ngày</a>
+      <a href="air.html">Không khí</a>
+      <a href="health.html">Sức khỏe</a>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h1>Chào mừng bạn đến với Dự Báo Thời Tiết!</h1>
+    <p>Tra cứu thông tin thời tiết, chất lượng không khí, sức khỏe mọi lúc, mọi nơi.</p>
+  </section>
+
+  <!-- Nội dung chính -->
+  <main>
+    <div class="features">
+      <div class="feature-card">
+        <h2>🌦️ Hôm nay</h2>
+        <p>Xem nhanh thời tiết hôm nay ở thành phố bạn chọn.</p>
+        <a href="today.html">Xem chi tiết ➔</a>
+      </div>
+      <div class="feature-card">
+        <h2>📅 Hàng ngày</h2>
+        <p>Dự báo 5-7 ngày tới, lên kế hoạch không lo thời tiết xấu!</p>
+        <a href="daily.html">Xem chi tiết ➔</a>
+      </div>
+      <div class="feature-card">
+        <h2>🍃 Không khí</h2>
+        <p>Kiểm tra chất lượng không khí (AQI) để bảo vệ sức khỏe.</p>
+        <a href="air.html">Xem chi tiết ➔</a>
+      </div>
+      <div class="feature-card">
+        <h2>❤️ Sức khỏe</h2>
+        <p>Gợi ý hoạt động ngoài trời phù hợp theo điều kiện thực tế.</p>
+        <a href="health.html">Xem chi tiết ➔</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Nhóm 4 - Bài tập cuối khóa CITT2</p>
+  </footer>
+
 </body>
 </html>
