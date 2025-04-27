@@ -1,48 +1,92 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body */
 body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to bottom, #dbeafe, #f0f9ff);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background 0.5s ease;
+  color: #333;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #1e3a8a;
-  padding: 15px 30px;
+/* Header */
+header {
+  background: linear-gradient(to right, #4dd0e1, #80cbc4);
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeInDown 0.5s ease-out;
 }
 
-.navbar a {
+/* Nav */
+nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: white;
+  margin-left: 20px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Icon trong nav */
+nav a i {
+  font-size: 1.2rem;
+}
+
+/* Gạch chân riêng chữ span */
+nav a span {
+  position: relative;
+}
+
+/* Gạch chân mặc định chỉ cho link "underline" */
+nav a.underline span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+/* Hover: tất cả menu hover chữ đều underline */
+nav a:hover span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
 }
 
 /* Hero */
 .hero {
   text-align: center;
   padding: 50px 20px;
-  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=1350&q=80') no-repeat center/cover;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=1350&q=80') center/cover no-repeat;
   color: white;
-  position: relative;
 }
 
+/* Weather Info */
 #weather-info {
   margin-top: 20px;
   display: flex;
@@ -60,7 +104,24 @@ body {
   font-size: 1.2rem;
 }
 
-/* Main content */
+/* Health Alert */
+#health-alert {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.alert-box {
+  background-color: #f87171;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  animation: pulse 1s infinite alternate;
+}
+
+/* Main Content */
 .activity-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -95,11 +156,6 @@ body {
   animation: shake 0.5s infinite alternate;
 }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(5px); }
-}
-
 .activity-card:hover {
   transform: scale(1.05);
 }
@@ -111,4 +167,20 @@ footer {
   background-color: #1e3a8a;
   color: white;
   margin-top: auto;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(5px); }
+}
+
+@keyframes fadeInDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
