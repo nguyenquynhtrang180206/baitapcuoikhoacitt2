@@ -1,60 +1,56 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dự báo thời tiết 7 ngày</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dự báo thời tiết Hàng ngày</title>
   <link rel="stylesheet" href="today.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
 
-  <!-- Header -->
   <header>
-    <div class="logo">🌦️ Dự báo thời tiết</div>
+    <div class="logo"><i class="fas fa-cloud-sun"></i> Dự báo thời tiết</div>
     <nav>
-      <a href="today.html" class="active">Hôm nay</a>
-      <a href="daily.html">Hàng ngày</a>
-      <a href="air.html">Không khí</a>
-      <a href="health.html">Sức khỏe</a>
+      <a href="today.html" class="active"><i class="fas fa-calendar-day"></i> Hàng ngày</a>
+      <a href="air.html"><i class="fas fa-wind"></i> Không khí</a>
+      <a href="health.html"><i class="fas fa-heartbeat"></i> Sức khỏe</a>
     </nav>
   </header>
 
-  <!-- Banner -->
   <section class="banner">
-    <h1>Dự báo 7 ngày tới</h1>
+    <h1><i class="fas fa-chart-line"></i> Dự báo thời tiết 5 ngày tới</h1>
   </section>
 
-  <!-- Main Content -->
   <main>
     <div class="day-cards">
-      <!-- Các thẻ ngày sẽ render động -->
-    </div>
+      </div>
 
     <div id="detail-box" class="detail hidden">
-      <button id="close-detail">Đóng</button>
-      <h2 id="detail-day">Chi tiết ngày</h2>
+      <button id="close-detail"><i class="fas fa-times"></i> Đóng</button>
+      <h2 id="detail-day"><i class="fas fa-calendar-alt"></i> Chi tiết ngày</h2>
       <ul>
-        <li><strong>Sáng:</strong> <span id="morning"></span></li>
-        <li><strong>Trưa:</strong> <span id="noon"></span></li>
-        <li><strong>Tối:</strong> <span id="night"></span></li>
-        <li><strong>Độ ẩm:</strong> <span id="humidity"></span></li>
-        <li><strong>Gió:</strong> <span id="wind"></span></li>
-        <li><strong>Cảm giác như:</strong> <span id="feels"></span></li>
+        <li><strong><i class="far fa-sun"></i> Trưa:</strong> <span id="noon"></span></li>
+        <li><strong><i class="fas fa-tint"></i> Độ ẩm:</strong> <span id="humidity"></span></li>
+        <li><strong><i class="fas fa-wind"></i> Gió:</strong> <span id="wind"></span></li>
+        <li><strong><i class="fas fa-thermometer-half"></i> Cảm giác như:</strong> <span id="feels"></span></li>
       </ul>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Nhóm 4 – Mô phỏng AccuWeather</p>
   </footer>
 
-  <!-- Loading Text -->
   <div id="loading-text"></div>
 
-  <!-- Script -->
   <script src="today.js"></script>
 
 </body>
+
 </html>
