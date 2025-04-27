@@ -5,8 +5,12 @@ async function fetchWeatherData() {
   try {
     showLoading(true);
 
+    // Sử dụng HTTPS chuẩn
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&lang=vi`;
     const response = await fetch(forecastUrl);
+
+    if (!response.ok) throw new Error('Lỗi kết nối API');
+
     const data = await response.json();
 
     if (data.cod !== "200") throw new Error(data.message);
@@ -17,8 +21,8 @@ async function fetchWeatherData() {
     renderDayCards(dailyData);
 
   } catch (error) {
-    console.error('Lỗi:', error);
-    alert('Không thể lấy dữ liệu thời tiết!');
+    console.error('Lỗi khi lấy dữ liệu thời tiết:', error);
+    alert('Không thể lấy dữ liệu thời tiết! Vui lòng thử lại sau.');
   } finally {
     showLoading(false);
   }
@@ -42,6 +46,7 @@ function renderDayCards(days) {
       <div class="temp">${Math.round(day.main.temp_max)}°C / ${Math.round(day.main.temp_min)}°C</div>
       <div class="rain">🌧️ ${day.pop !== undefined ? Math.round(day.pop * 100) : 0}%</div>
     `;
+
     card.addEventListener('click', () => showDetails(day));
     container.appendChild(card);
   });
@@ -71,6 +76,7 @@ function showLoading(state) {
   loadingText.innerHTML = state ? '🔄 Đang tải dữ liệu...' : '';
 }
 
+// Khi trang web load xong
 window.onload = () => {
   fetchWeatherData();
   document.getElementById('close-detail').addEventListener('click', closeDetails);
