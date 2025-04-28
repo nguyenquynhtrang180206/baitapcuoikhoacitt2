@@ -1,97 +1,184 @@
+/* Reset chung */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  background-color: #f5f7fa;
 }
 
+/* Header */
 header {
-  background: #0288d1;
-  color: white;
-  padding: 15px 30px;
+  background: linear-gradient(to right, #4dd0e1, #80cbc4);
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo */
+header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeInDown 0.5s ease-out;
+}
+
+/* Nav tổng */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Nav link */
 nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
   margin-left: 20px;
   text-decoration: none;
-  color: white;
   font-weight: 600;
   position: relative;
+  transition: color 0.3s ease;
 }
 
-nav a.active {
-  text-decoration: underline;
+/* Icon trong nav */
+nav a i {
+  font-size: 1.2rem;
 }
 
-/* Banner */
-.banner {
-  text-align: center;
-  padding: 50px 20px;
-  color: white;
-  transition: background 0.5s ease;
-}
-
-/* Main content */
-.content {
-  padding: 30px 20px;
-  flex-grow: 1;
-}
-
-.aqi-summary {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.pollutants {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  border-collapse: collapse;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.pollutants th, .pollutants td {
-  padding: 12px 15px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+/* Gạch chân */
+nav a span {
   position: relative;
 }
 
-.pollutants th {
-  background-color: #0288d1;
-  color: white;
-}
-
-/* Tooltip */
-.pollutants td:hover::after {
-  content: attr(data-tooltip);
+nav a span::after {
+  content: '';
   position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  white-space: nowrap;
-  margin-bottom: 5px;
-  font-size: 0.8rem;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Footer */
-footer {
-  background: #0288d1;
-  color: white;
+/* Link "underline" luôn gạch chân */
+nav a.underline span::after,
+nav a:hover span::after {
+  opacity: 1;
+}
+
+/* AQI Container */
+.aqi-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+/* Màu nền AQI theo mức độ */
+.good { background: linear-gradient(135deg, #4CAF50, #81C784); }
+.fair { background: linear-gradient(135deg, blue, #FFF59D); }
+.moderate { background: linear-gradient(135deg, #FFC107, #FFD54F); }
+.poor { background: linear-gradient(135deg, #FF5722, #FF8A65); }
+.very-poor { background: linear-gradient(135deg, #9C27B0, #BA68C8); }
+
+/* Location */
+#location-display {
   text-align: center;
-  padding: 15px;
-  margin-top: auto;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* AQI Header */
+.aqi-header {
+  text-align: center;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+/* AQI Index */
+.aqi-index {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Table Chi tiết */
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.details-table th, 
+.details-table td {
+  padding: 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.details-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.details-table tr:hover {
+  background: #f5f7fa;
+}
+
+/* Thông tin bổ sung */
+.aqi-description, .weather-info {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 10px;
+}
+
+.weather-info h3, .aqi-description h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+/* Weather detail */
+#weather-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+#weather-details p {
+  margin: 0;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #weather-details {
+    grid-template-columns: 1fr;
+  }
 }
