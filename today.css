@@ -1,160 +1,94 @@
+/* Reset mặc định */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Biến màu */
+:root {
+  --primary-color: #0056b3;
+  --hover-color: #007bff;
+  --header-gradient: linear-gradient(to right, #4dd0e1, #80cbc4);
+  --background-gradient: linear-gradient(to top, #e6f7ff, #b3d9ff, #66a3ff);
+  --white-transparent: rgba(255, 255, 255, 0.8);
+  --white-more-transparent: rgba(255, 255, 255, 0.7);
+}
+
+/* Body */
 body {
   font-family: 'Arial', sans-serif;
-  /* Gradient xanh dương dịu mắt */
-  background: linear-gradient(to top, #e6f7ff, #b3d9ff, #66a3ff);
+  background: var(--background-gradient);
   min-height: 100vh;
   color: #333;
-  transition: background 0.5s ease; /* Hiệu ứng chuyển màu mượt mà */
+  transition: background 0.5s ease;
 }
 
-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: white;
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
-}
-
-/* Icon trong nav */
-nav a i {
-  font-size: 1.2rem;
-}
-
-/* Gạch chân chỉ chữ (span) */
-nav a span {
-  position: relative;
-}
-
-/* Gạch chân riêng "Hàng ngày" */
-nav a.underline span::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-}
-
-/* Header */
+/* Header tổng */
 header {
-  background: linear-gradient(to right, #4dd0e1, #80cbc4);
+  background: var(--header-gradient);
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Logo bên trái, Nav bên phải */
+  align-items: center; /* Căn giữa chiều cao */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-header .logo {
+/* Logo */
+.logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  animation: fadeInDown 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Khoảng cách giữa icon và chữ */
 }
 
-/* Nav */
-nav a {
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 2rem; /* Khoảng cách giữa các mục menu */
+}
+
+/* Các link trong nav */
+.nav-links a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   color: white;
-  margin-left: 20px;
   text-decoration: none;
   font-weight: 600;
   position: relative;
-}
-
-/* Icon trong nav */
-nav a i {
-  font-size: 1.2rem;
-}
-
-/* Gạch chân riêng chữ span */
-nav a span {
-  position: relative;
-}
-
-/* Gạch chân mặc định chỉ cho link "underline" */
-nav a.underline span::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-}
-
-/* Hover: tất cả menu hover chữ đều underline */
-nav a:hover span::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-}
-
-/* Hover tất cả menu: thêm underline */
-nav a:hover span::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-}
-
-/* Navbar */
-.navbar {
-  background: rgba(255, 255, 255, 0.9); /* Nền trắng trong suốt hơn */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
-  transition: background-color 0.3s ease;
-}
-
-.navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #0056b3; /* Xanh dương đậm hơn cho logo */
   transition: color 0.3s ease;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
+/* Icon */
+.nav-links a i {
+  font-size: 1.2rem;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #0056b3; /* Xanh dương đậm hơn cho link */
-  font-weight: 500;
+/* Underline */
+.nav-links a span {
   position: relative;
-  transition: color 0.3s ease; /* Hiệu ứng màu khi hover */
 }
 
-.nav-links a.active,
-.nav-links a:hover {
-  color: #007bff; /* Xanh dương sáng hơn khi active/hover */
+.nav-links a span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.nav-links a.underline span::after,
+.nav-links a:hover span::after {
+  opacity: 1;
+}
+
 
 /* Hero Section */
 .hero {
@@ -162,20 +96,22 @@ nav a:hover span::after {
   padding: 2rem;
 }
 
+/* Thời tiết hiện tại */
 .current-weather {
-  background: rgba(255,255,255,0.8);
+  background: var(--white-transparent);
   border-radius: 12px;
   padding: 2rem;
   display: inline-block;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Bóng đổ đậm hơn */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .current-weather:hover {
-  transform: translateY(-5px); /* Nhấc lên 1 chút khi hover */
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2); /* Bóng đổ đậm hơn khi hover */
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Thông tin thời tiết */
 .weather-info {
   display: flex;
   align-items: center;
@@ -185,14 +121,14 @@ nav a:hover span::after {
 }
 
 .weather-info img {
-  width: 80px;
+  width: 180px;
   height: 80px;
 }
 
 #temperature {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #0056b3; /* Xanh dương đậm */
+  color: var(--primary-color);
   transition: color 0.3s ease;
 }
 
@@ -215,15 +151,15 @@ nav a:hover span::after {
   color: #888;
 }
 
-/* Hourly Forecast */
+/* Dự báo theo giờ */
 .hourly-forecast {
-  margin: 2rem;
+  margin: 20px;
 }
 
 .hourly-forecast h2 {
   text-align: center;
-  margin-bottom: 1rem;
-  color: #0056b3; /* Xanh dương đậm cho tiêu đề */
+  margin-bottom: 40px;
+  color: var(--primary-color);
 }
 
 .forecast-grid {
@@ -234,21 +170,33 @@ nav a:hover span::after {
 }
 
 .forecast-hour {
-  background: rgba(255,255,255,0.7); /* Trong suốt hơn */
-  padding: 1rem;
+  background: var(--white-more-transparent);
+  padding: 2rem;
   border-radius: 12px;
   text-align: center;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Bóng đổ nhẹ */
+  box-shadow: 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .forecast-hour img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 0.5rem;
+  width: 70px;
+  height: 50px;
 }
+
 .forecast-hour:hover {
-  background: #e6f7ff; /* Xanh dương nhạt khi hover */
+  background: #e6f7ff;
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Bóng đổ đậm hơn khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .weather-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
 }
