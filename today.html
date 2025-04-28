@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hôm nay - Dự Báo Thời Tiết</title>
-  <link rel="stylesheet" href="today.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thời tiết hôm nay</title>
+  <link rel="stylesheet" href="today.css">
 </head>
-
 <body>
+
   <header>
     <div class="logo">
-      <i class="fas fa-cloud-sun"></i> Dự báo thời tiết
+      <i class="fas fa-cloud-sun"></i> Hôm nay
     </div>
     <nav class="nav-links">
       <a href="index.html"><i class="fas fa-home"></i> <span>Trang chủ</span></a>
@@ -22,37 +20,32 @@
       <a href="health.html"><i class="fas fa-heartbeat"></i> <span>Sức khỏe</span></a>
     </nav>
   </header>
+  
 
-  <main>
-    <section class="today-container">
-      <h1>Thời tiết hôm nay</h1>
-      <div class="weather-today">
-        <img src="images/weather-icon.png" alt="Thời tiết hiện tại" />
-        <div class="temperature">28°C</div>
-        <div class="details-today">
-          <div class="detail-item">
-            <h3>Cảm giác thực</h3>
-            <p>30°C</p>
-          </div>
-          <div class="detail-item">
-            <h3>Độ ẩm</h3>
-            <p>70%</p>
-          </div>
-          <div class="detail-item">
-            <h3>Gió</h3>
-            <p>5 m/s</p>
-          </div>
-          <div class="detail-item">
-            <h3>Trạng thái</h3>
-            <p>Ít mây</p>
-          </div>
+  <section class="hero">
+    <div class="current-weather">
+      <h1 id="city-name">Đang tải...</h1>
+      <div class="weather-info">
+        <img id="current-icon" src="" alt="Weather Icon">
+        <div>
+          <div id="temperature">--°C</div>
+          <div id="description">---</div>
+          <div id="feels-like">Cảm giác như: --°C</div>
+          <div id="humidity">Độ ẩm: --%</div>
+          <div id="wind-speed">Gió: -- m/s</div>
         </div>
       </div>
-    </section>
-  </main>
+      <div id="current-time"></div>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2025 Nhóm 4 - Bài tập cuối khóa CITT2</p>
-  </footer>
+  <section class="hourly-forecast">
+    <h2>Dự báo 12 giờ tới</h2>
+    <div class="forecast-grid" id="hourly-grid">
+      <!-- Các ô giờ sẽ được thêm bằng JS -->
+    </div>
+  </section>
+
+  <script src="today.js"></script>
 </body>
 </html>
