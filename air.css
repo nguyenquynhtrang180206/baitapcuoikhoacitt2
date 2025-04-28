@@ -21,7 +21,6 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
 header .logo {
   font-size: 1.8rem;
   font-weight: bold;
@@ -33,13 +32,12 @@ header .logo {
   animation: fadeInDown 0.5s ease-out;
 }
 
-/* Nav tổng */
+/* Nav */
 nav {
   display: flex;
   align-items: center;
 }
 
-/* Nav link */
 nav a {
   display: inline-flex;
   align-items: center;
@@ -52,12 +50,10 @@ nav a {
   transition: color 0.3s ease;
 }
 
-/* Icon trong nav */
 nav a i {
   font-size: 1.2rem;
 }
 
-/* Gạch chân */
 nav a span {
   position: relative;
 }
@@ -74,7 +70,6 @@ nav a span::after {
   transition: opacity 0.3s ease;
 }
 
-/* Link "underline" luôn gạch chân */
 nav a.underline span::after,
 nav a:hover span::after {
   opacity: 1;
@@ -91,9 +86,9 @@ nav a:hover span::after {
   transition: background 0.3s ease;
 }
 
-/* Màu nền AQI theo mức độ */
+/* Màu nền AQI */
 .good { background: linear-gradient(135deg, #4CAF50, #81C784); }
-.fair { background: linear-gradient(135deg, blue, #FFF59D); }
+.fair { background: linear-gradient(135deg, #FFA726, #FFCC80); } /* đổi từ vàng -> cam nhạt */
 .moderate { background: linear-gradient(135deg, #FFC107, #FFD54F); }
 .poor { background: linear-gradient(135deg, #FF5722, #FF8A65); }
 .very-poor { background: linear-gradient(135deg, #9C27B0, #BA68C8); }
@@ -115,14 +110,13 @@ nav a:hover span::after {
   margin-bottom: 2rem;
 }
 
-/* AQI Index */
 .aqi-index {
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-/* Table Chi tiết */
+/* Bảng chi tiết */
 .details-table {
   width: 100%;
   border-collapse: collapse;
@@ -147,7 +141,7 @@ nav a:hover span::after {
   background: #f5f7fa;
 }
 
-/* Thông tin bổ sung */
+/* Mô tả và thời tiết */
 .aqi-description, .weather-info {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -171,14 +165,18 @@ nav a:hover span::after {
   margin: 0;
 }
 
-/* Responsive Mobile */
+/* Responsive */
 @media (max-width: 600px) {
   nav {
     flex-direction: column;
     gap: 10px;
   }
-
   #weather-details {
     grid-template-columns: 1fr;
   }
+}
+
+/* Thêm fade-in cho mức độ ảnh hưởng */
+#aqi-description-text {
+  transition: opacity 0.5s ease;
 }
