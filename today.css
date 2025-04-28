@@ -1,10 +1,11 @@
-/* Reset */
+/* Reset mặc định */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Biến màu */
 :root {
   --primary-color: #0056b3;
   --hover-color: #007bff;
@@ -14,37 +15,42 @@
   --white-more-transparent: rgba(255, 255, 255, 0.7);
 }
 
+/* Body */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Arial', sans-serif;
   background: var(--background-gradient);
   min-height: 100vh;
   color: #333;
+  transition: background 0.5s ease;
 }
 
-/* Header */
+/* Header tổng */
 header {
   background: var(--header-gradient);
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Logo bên trái, Nav bên phải */
+  align-items: center; /* Căn giữa chiều cao */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo */
 .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: white;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* Khoảng cách giữa icon và chữ */
 }
 
+/* Nav links */
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 2rem; /* Khoảng cách giữa các mục menu */
 }
 
+/* Các link trong nav */
 .nav-links a {
   display: inline-flex;
   align-items: center;
@@ -52,13 +58,16 @@ header {
   color: white;
   text-decoration: none;
   font-weight: 600;
+  position: relative;
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: var(--hover-color);
+/* Icon */
+.nav-links a i {
+  font-size: 1.2rem;
 }
 
+/* Underline */
 .nav-links a span {
   position: relative;
 }
@@ -80,51 +89,77 @@ header {
   opacity: 1;
 }
 
-/* Today Container */
-.today-container {
-  max-width: 900px;
-  margin: 3rem auto;
+
+/* Hero Section */
+.hero {
+  text-align: center;
   padding: 2rem;
+}
+
+/* Thời tiết hiện tại */
+.current-weather {
   background: var(--white-transparent);
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  text-align: center;
+  padding: 2rem;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.today-container h1 {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+.current-weather:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Weather Today */
-.weather-today {
+/* Thông tin thời tiết */
+.weather-info {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 2rem;
 }
 
-.weather-today img {
-  width: 120px;
-  height: 120px;
+.weather-info img {
+  width: 180px;
+  height: 80px;
 }
 
-.temperature {
-  font-size: 4rem;
+#temperature {
+  font-size: 2.5rem;
   font-weight: bold;
   color: var(--primary-color);
+  transition: color 0.3s ease;
 }
 
-/* Hourly Forecast */
+#description {
+  color: #555;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+#feels-like,
+#humidity,
+#wind-speed {
+  color: #777;
+  font-size: 1rem;
+}
+
+#current-time {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Dự báo theo giờ */
 .hourly-forecast {
-  margin-top: 3rem;
+  margin: 20px;
 }
 
 .hourly-forecast h2 {
-  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
   color: var(--primary-color);
-  margin-bottom: 2rem;
 }
 
 .forecast-grid {
@@ -136,37 +171,31 @@ header {
 
 .forecast-hour {
   background: var(--white-more-transparent);
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .forecast-hour img {
-  width: 50px;
+  width: 70px;
   height: 50px;
 }
 
 .forecast-hour:hover {
   background: #e6f7ff;
   transform: scale(1.05);
-  transition: 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  color: #555;
-  margin-top: 4rem;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .today-container {
-    padding: 1.5rem;
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .weather-info {
+    flex-direction: column;
+    gap: 1rem;
   }
+
   .forecast-grid {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
