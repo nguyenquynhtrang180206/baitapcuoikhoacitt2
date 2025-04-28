@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hôm nay - Dự Báo Thời Tiết</title>
+  <title>Thời tiết hôm nay - Dự Báo Thời Tiết</title>
   <link rel="stylesheet" href="today.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -25,34 +25,28 @@
 
   <main>
     <section class="today-container">
-      <h1>Thời tiết hôm nay</h1>
+      <h1 id="city-name">Đang tải...</h1>
       <div class="weather-today">
-        <img src="images/weather-icon.png" alt="Thời tiết hiện tại" />
-        <div class="temperature">28°C</div>
-        <div class="details-today">
-          <div class="detail-item">
-            <h3>Cảm giác thực</h3>
-            <p>30°C</p>
-          </div>
-          <div class="detail-item">
-            <h3>Độ ẩm</h3>
-            <p>70%</p>
-          </div>
-          <div class="detail-item">
-            <h3>Gió</h3>
-            <p>5 m/s</p>
-          </div>
-          <div class="detail-item">
-            <h3>Trạng thái</h3>
-            <p>Ít mây</p>
-          </div>
-        </div>
+        <img id="current-icon" src="" alt="Icon thời tiết" />
+        <div class="temperature" id="temperature">--°C</div>
+        <p id="description">Đang tải mô tả...</p>
+        <p id="feels-like">Cảm giác như: --°C</p>
+        <p id="humidity">Độ ẩm: --%</p>
+        <p id="wind-speed">Gió: -- m/s</p>
+        <p id="current-time">Cập nhật lúc: --:--</p>
       </div>
+
+      <section class="hourly-forecast">
+        <h2>Dự báo 12 giờ tiếp theo</h2>
+        <div id="hourly-grid" class="forecast-grid"></div>
+      </section>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Nhóm 4 - Bài tập cuối khóa CITT2</p>
   </footer>
+
+  <script src="today.js"></script>
 </body>
 </html>
