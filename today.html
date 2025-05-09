@@ -1,47 +1,63 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thời tiết hôm nay</title>
-  <link rel="stylesheet" href="today.css">
-</head>
-<body>
+const API_KEY = 'fcee8e3c23247c9931060785ee8fab70';
+const city = 'Hanoi'; // Bạn có thể cho phép user chọn thành phố sau
 
-  <nav class="navbar">
-    <div class="logo">WeatherApp</div>
-    <ul class="nav-links">
-      <li><a href="today.html" class="active">Hôm nay</a></li>
-      <li><a href="daily.html">Hàng ngày</a></li>
-      <li><a href="air.html">Không khí</a></li>
-      <li><a href="health.html">Sức khỏe</a></li>
-    </ul>
-  </nav>
+async function fetchWeather() {
+  try {
+    // Fetch current weather
+    const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=vi`);
+    const weatherData = await weatherRes.json();
 
-  <section class="hero">
-    <div class="current-weather">
-      <h1 id="city-name">Đang tải...</h1>
-      <div class="weather-info">
-        <img id="current-icon" src="" alt="Weather Icon">
-        <div>
-          <div id="temperature">--°C</div>
-          <div id="description">---</div>
-          <div id="feels-like">Cảm giác như: --°C</div>
-          <div id="humidity">Độ ẩm: --%</div>
-          <div id="wind-speed">Gió: -- m/s</div>
-        </div>
-      </div>
-      <div id="current-time"></div>
-    </div>
-  </section>
+    // Update current weather info
+    document.getElementById('city-name').textContent = weatherData.name;
+    document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}°C`;
+    document.getElementById('description').textContent = weatherData.weather[0].description;
+    document.getElementById('feels-like').textContent = `Cảm giác như: ${Math.round(weatherData.main.feels_like)}°C`;
+    document.getElementById('humidity').textContent = `Độ ẩm: ${weatherData.main.humidity}%`;
+    document.getElementById('wind-speed').textContent = `Gió: ${weatherData.wind.speed} m/s`;
+    document.getElementById('current-icon').src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
 
-  <section class="hourly-forecast">
-    <h2>Dự báo 12 giờ tới</h2>
-    <div class="forecast-grid" id="hourly-grid">
-      <!-- Các ô giờ sẽ được thêm bằng JS -->
-    </div>
-  </section>
+    // Cập nhật giờ hiện tại
+    updateCurrentTime();
 
-  <script src="today.js"></script>
-</body>
-</html>
+    // Fetch 5-day/3-hour forecast
+    const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric&lang=vi`);
+    const forecastData = await forecastRes.json();
+
+    const hourlyGrid = document.getElementById('hourly-grid');
+    hourlyGrid.innerHTML = '';
+
+    // Lấy 12 giờ tiếp theo (dữ liệu mỗi 3 giờ -> cần lấy gần đúng giờ hiện tại)
+    const now = new Date();
+    const hours = forecastData.list.filter(item => {
+      const itemDate = new Date(item.dt * 1000);
+      return itemDate > now;
+    }).slice(0, 12); // lấy đúng 12 mục tiếp theo
+
+    hours.forEach(hour => {
+      const time = new Date(hour.dt * 1000);
+      const hourEl = document.createElement('div');
+      hourEl.className = 'forecast-hour';
+      hourEl.innerHTML = `
+        <div>${time.getHours()}:00</div>
+        <img src="http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="icon">
+        <div>${Math.round(hour.main.temp)}°C</div>
+      `;
+      hourlyGrid.appendChild(hourEl);
+    });
+
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+  }
+}
+
+function updateCurrentTime() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('current-time').textContent = `Cập nhật lúc: ${timeString}`;
+}
+
+// Cập nhật mỗi phút
+setInterval(updateCurrentTime, 60000);
+
+// Bắt đầu
+fetchWeather();
