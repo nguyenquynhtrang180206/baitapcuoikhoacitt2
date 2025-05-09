@@ -1,113 +1,63 @@
+const API_KEY = 'fcee8e3c23247c9931060785ee8fab70';
+const city = 'Hanoi'; // Bạn có thể cho phép user chọn thành phố sau
 
-// Đặt API key 
-const apiKey = 'fcee8e3c23247c9931060785ee8fab70'
+async function fetchWeather() {
+  try {
+    // Fetch current weather
+    const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=vi`);
+    const weatherData = await weatherRes.json();
 
-// Hàm lấy thông tin thời tiết hiện tại
-async function getCurrentWeather() {
-    try {
-        // Thay đổi thành vị trí (ví dụ: Hà Nội)
-        const city = "Hanoi";
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=vi&appid=${apiKey}`;
+    // Update current weather info
+    document.getElementById('city-name').textContent = weatherData.name;
+    document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}°C`;
+    document.getElementById('description').textContent = weatherData.weather[0].description;
+    document.getElementById('feels-like').textContent = `Cảm giác như: ${Math.round(weatherData.main.feels_like)}°C`;
+    document.getElementById('humidity').textContent = `Độ ẩm: ${weatherData.main.humidity}%`;
+    document.getElementById('wind-speed').textContent = `Gió: ${weatherData.wind.speed} m/s`;
+    document.getElementById('current-icon').src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
 
-        const response = await fetch(url);
-        const data = await response.json();
+    // Cập nhật giờ hiện tại
+    updateCurrentTime();
 
-        // Cập nhật dữ liệu lên giao diện
-        document.querySelector('.temperature').innerHTML = `${Math.round(data.main.temp)}°C`;
-        document.querySelector('.description').innerHTML = data.weather[0].description;
-        document.querySelector('.humidity').innerHTML = `Độ ẩm: ${data.main.humidity}%`;
-        document.querySelector('.wind').innerHTML = `Gió: ${data.wind.speed} km/h`;
-        document.querySelector('.feels-like').innerHTML = `Cảm giác như: ${Math.round(data.main.feels_like)}°C`;
-        
-        // Thay đổi icon
-        updateWeatherIcon(data.weather[0].icon, '.current-weather .icon');
-        
-    } catch (error) {
-        console.error("Lỗi lấy thời tiết hiện tại:", error);
-    }
-}
+    // Fetch 5-day/3-hour forecast
+    const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric&lang=vi`);
+    const forecastData = await forecastRes.json();
 
-// Hàm lấy dự báo thời tiết theo giờ
-async function getHourlyForecast() {
-    try {
-        // Dùng latitude và longitude của thành phố
-        const lat = 21.0285;
-        const lon = 105.8542;
-        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=vi&appid=${apiKey}`;
+    const hourlyGrid = document.getElementById('hourly-grid');
+    hourlyGrid.innerHTML = '';
 
-        const response = await fetch(url);
-        const data = await response.json();
-
-        const hourlyContainer = document.querySelector('.hourly');
-        hourlyContainer.innerHTML = ''; // Xóa dữ liệu cũ
-
-        // Lấy 12 giờ đầu tiên
-        for (let i = 0; i < 12; i++) {
-            const forecast = data.list[i];
-            const time = new Date(forecast.dt * 1000).getHours(); // Giờ
-            const temp = Math.round(forecast.main.temp); // Nhiệt độ
-            const iconCode = forecast.weather[0].icon; // Icon thời tiết
-
-            const hourElement = document.createElement('div');
-            hourElement.classList.add('hour');
-            hourElement.innerHTML = `
-                <div class="time">${time}:00</div>
-                <div class="icon"></div>
-                <div class="temp">${temp}°C</div>
-            `;
-
-            // Gán icon cho mỗi giờ
-            updateWeatherIcon(iconCode, hourElement.querySelector('.icon'));
-
-            hourlyContainer.appendChild(hourElement);
-        }
-
-    } catch (error) {
-        console.error("Lỗi lấy dự báo thời tiết:", error);
-    }
-}
-
-// Hàm đổi icon thời tiết dựa trên mã icon của API
-function updateWeatherIcon(iconCode, iconElement) {
-    const iconMap = {
-        "01d": "fas fa-sun",
-        "01n": "fas fa-moon",
-        "02d": "fas fa-cloud-sun",
-        "02n": "fas fa-cloud-moon",
-        "03d": "fas fa-cloud",
-        "03n": "fas fa-cloud",
-        "04d": "fas fa-cloud",
-        "04n": "fas fa-cloud",
-        "09d": "fas fa-cloud-showers-heavy",
-        "09n": "fas fa-cloud-showers-heavy",
-        "10d": "fas fa-cloud-rain",
-        "10n": "fas fa-cloud-rain",
-        "11d": "fas fa-bolt",
-        "11n": "fas fa-bolt",
-        "13d": "fas fa-snowflake",
-        "13n": "fas fa-snowflake",
-        "50d": "fas fa-smog",
-        "50n": "fas fa-smog"
-    };
-
-    const iconClass = iconMap[iconCode] || "fas fa-question-circle";
-    iconElement.innerHTML = `<i class="${iconClass}"></i>`;
-}
-
-// Hàm cập nhật đồng hồ thời gian thực
-function updateClock() {
+    // Lấy 12 giờ tiếp theo (dữ liệu mỗi 3 giờ -> cần lấy gần đúng giờ hiện tại)
     const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const timeString = `${hours}:${minutes}`;
+    const hours = forecastData.list.filter(item => {
+      const itemDate = new Date(item.dt * 1000);
+      return itemDate > now;
+    }).slice(0, 12); // lấy đúng 12 mục tiếp theo
 
-    document.querySelector('h1').innerText = `Thời tiết hiện tại (${timeString})`;
+    hours.forEach(hour => {
+      const time = new Date(hour.dt * 1000);
+      const hourEl = document.createElement('div');
+      hourEl.className = 'forecast-hour';
+      hourEl.innerHTML = `
+        <div>${time.getHours()}:00</div>
+        <img src="http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="icon">
+        <div>${Math.round(hour.main.temp)}°C</div>
+      `;
+      hourlyGrid.appendChild(hourEl);
+    });
+
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+  }
 }
 
-// Gọi hàm khi trang được tải
-document.addEventListener('DOMContentLoaded', function () {
-    getCurrentWeather();
-    getHourlyForecast();
-    updateClock();
-    setInterval(updateClock, 60000); // Cập nhật mỗi phút
-});
+function updateCurrentTime() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('current-time').textContent = `Cập nhật lúc: ${timeString}`;
+}
+
+// Cập nhật mỗi phút
+setInterval(updateCurrentTime, 60000);
+
+// Bắt đầu
+fetchWeather();
