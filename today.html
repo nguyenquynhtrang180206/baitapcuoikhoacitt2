@@ -1,97 +1,47 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thời Tiết</title>
-    <link rel="stylesheet" href="today.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thời tiết hôm nay</title>
+  <link rel="stylesheet" href="today.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Logo</div>
-        <nav>
-            <ul>
-                <li><a href="#">Hôm nay</a></li>
-                <li><a href="daily.html">Hàng ngày</a></li>
-                <li><a href="air.html">Không khí</a></li>
-                <li><a href="health.html">Sức khỏe</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main> 
-        <div class="weather-info">
-            <h1>Thời tiết hiện tại</h1>
-            <div class="current-weather">
-                <div class="temperature">25°C</div>
-                <div class="description">Nắng</div>
-                <div class="humidity">Độ ẩm: 60%</div>
-                <div class="wind">Gió: 10 km/h</div>
-                <div class="feels-like">Cảm giác như: 27°C</div>
-                <div class="icon"><i class="fas fa-sun"></i></div>
-            </div>
+
+  <nav class="navbar">
+    <div class="logo">WeatherApp</div>
+    <ul class="nav-links">
+      <li><a href="today.html" class="active">Hôm nay</a></li>
+      <li><a href="daily.html">Hàng ngày</a></li>
+      <li><a href="air.html">Không khí</a></li>
+      <li><a href="health.html">Sức khỏe</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="current-weather">
+      <h1 id="city-name">Đang tải...</h1>
+      <div class="weather-info">
+        <img id="current-icon" src="" alt="Weather Icon">
+        <div>
+          <div id="temperature">--°C</div>
+          <div id="description">---</div>
+          <div id="feels-like">Cảm giác như: --°C</div>
+          <div id="humidity">Độ ẩm: --%</div>
+          <div id="wind-speed">Gió: -- m/s</div>
         </div>
-        <div class="hourly-forecast">
-            <h2>Dự báo thời tiết từng giờ</h2>
-            <div class="hourly">
-                <div class="hour">
-                    <div class="time">12:00</div>
-                    <div class="icon"><i class="fas fa-sun"></i></div>
-                    <div class="temp">26°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">13:00</div>
-                    <div class="icon"><i class="fas fa-sun"></i></div>
-                    <div class="temp">27°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">14:00</div>
-                    <div class="icon"><i class="fas fa-cloud-sun"></i></div>
-                    <div class="temp">28°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">15:00</div>
-                    <div class="icon"><i class="fas fa-cloud-showers-heavy"></i></div>
-                    <div class="temp">25°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">16:00</div>
-                    <div class="icon"><i class="fas fa-sun"></i></div>
-                    <div class="temp">26°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">17:00</div>
-                    <div class="icon"><i class="fas fa-sun"></i></div>
-                    <div class="temp">27°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">18:00</div>
-                    <div class="icon"><i class="fas fa-cloud"></i></div>
-                    <div class="temp">24°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">19:00</div>
-                    <div class="icon"><i class="fas fa-cloud-moon"></i></div>
-                    <div class="temp">23°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">20:00</div>
-                    <div class="icon"><i class="fas fa-moon"></i></div>
-                    <div class="temp">22°C</div>
-                </div>
-                <div class="hour">
-                    <div class="time">21:00</div>
-                    <div class="icon"><i class="fas fa-moon"></i></div>
-                    <div class="temp">21°C</div>
-                </div>
-    </main>
-    <footer>
-        <div class="footer-content">
-            <p>Nhóm phát triển: Nhóm 4</p>
-            <p>Thành viên: Yến Ngọc, Ngân Hà, Trần Trang, Quỳnh Trang</p>
-           
-        </div>
-    </footer>
-    <script src="today.js"></script>
+      </div>
+      <div id="current-time"></div>
+    </div>
+  </section>
+
+  <section class="hourly-forecast">
+    <h2>Dự báo 12 giờ tới</h2>
+    <div class="forecast-grid" id="hourly-grid">
+      <!-- Các ô giờ sẽ được thêm bằng JS -->
+    </div>
+  </section>
+
+  <script src="today.js"></script>
 </body>
 </html>
