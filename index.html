@@ -1,66 +1,97 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Trang chủ - Dự Báo Thời Tiết</title>
-  <link rel="stylesheet" href="index.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời Tiết</title>
+    <link rel="stylesheet" href="today.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-
-  <!-- Header -->
-  <header>
-    <div class="logo">🌦️ Dự Báo Thời Tiết</div>
-    <nav>
-      <a href="index.html" class="active">Trang chủ</a>
-      <a href="today.html">Hôm nay</a>
-      <a href="daily.html">Hàng ngày</a>
-      <a href="air.html">Không khí</a>
-      <a href="health.html">Sức khỏe</a>
-    </nav>
-  </header>
-
-  <!-- Banner -->
-  <section class="banner">
-    <h1>Chào mừng đến với Ứng Dụng Dự Báo Thời Tiết!</h1>
-    <p>Cập nhật nhanh chóng thông tin thời tiết, chất lượng không khí và sức khỏe.</p>
-  </section>
-
-  <!-- Nội dung chính -->
-  <main>
-    <section class="intro">
-      <h2>Khám phá các chức năng</h2>
-      <div class="features">
-        <div class="feature-card">
-          <h3>🌤️ Thời tiết hôm nay</h3>
-          <p>Xem nhiệt độ, tình trạng mưa, nắng hiện tại nhanh chóng.</p>
-          <a href="today.html">Xem ngay ➔</a>
+    <header>
+        <div class="logo">Logo</div>
+        <nav>
+            <ul>
+                <li><a href="#">Hôm nay</a></li>
+                <li><a href="daily.html">Hàng ngày</a></li>
+                <li><a href="air.html">Không khí</a></li>
+                <li><a href="health.html">Sức khỏe</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main> 
+        <div class="weather-info">
+            <h1>Thời tiết hiện tại</h1>
+            <div class="current-weather">
+                <div class="temperature">25°C</div>
+                <div class="description">Nắng</div>
+                <div class="humidity">Độ ẩm: 60%</div>
+                <div class="wind">Gió: 10 km/h</div>
+                <div class="feels-like">Cảm giác như: 27°C</div>
+                <div class="icon"><i class="fas fa-sun"></i></div>
+            </div>
         </div>
-        <div class="feature-card">
-          <h3>📅 Dự báo hàng ngày</h3>
-          <p>Lên kế hoạch với dự báo chi tiết cho 5-7 ngày tới.</p>
-          <a href="daily.html">Xem ngay ➔</a>
+        <div class="hourly-forecast">
+            <h2>Dự báo thời tiết từng giờ</h2>
+            <div class="hourly">
+                <div class="hour">
+                    <div class="time">12:00</div>
+                    <div class="icon"><i class="fas fa-sun"></i></div>
+                    <div class="temp">26°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">13:00</div>
+                    <div class="icon"><i class="fas fa-sun"></i></div>
+                    <div class="temp">27°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">14:00</div>
+                    <div class="icon"><i class="fas fa-cloud-sun"></i></div>
+                    <div class="temp">28°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">15:00</div>
+                    <div class="icon"><i class="fas fa-cloud-showers-heavy"></i></div>
+                    <div class="temp">25°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">16:00</div>
+                    <div class="icon"><i class="fas fa-sun"></i></div>
+                    <div class="temp">26°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">17:00</div>
+                    <div class="icon"><i class="fas fa-sun"></i></div>
+                    <div class="temp">27°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">18:00</div>
+                    <div class="icon"><i class="fas fa-cloud"></i></div>
+                    <div class="temp">24°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">19:00</div>
+                    <div class="icon"><i class="fas fa-cloud-moon"></i></div>
+                    <div class="temp">23°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">20:00</div>
+                    <div class="icon"><i class="fas fa-moon"></i></div>
+                    <div class="temp">22°C</div>
+                </div>
+                <div class="hour">
+                    <div class="time">21:00</div>
+                    <div class="icon"><i class="fas fa-moon"></i></div>
+                    <div class="temp">21°C</div>
+                </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Nhóm phát triển: Nhóm 4</p>
+            <p>Thành viên: Yến Ngọc, Ngân Hà, Trần Trang, Quỳnh Trang</p>
+           
         </div>
-        <div class="feature-card">
-          <h3>🍃 Chất lượng không khí</h3>
-          <p>Kiểm tra mức độ ô nhiễm không khí (AQI) tại nơi bạn sống.</p>
-          <a href="air.html">Xem ngay ➔</a>
-        </div>
-        <div class="feature-card">
-          <h3>❤️ Gợi ý sức khỏe</h3>
-          <p>Hoạt động nào phù hợp với thời tiết hôm nay? Xem gợi ý!</p>
-          <a href="health.html">Xem ngay ➔</a>
-        </div>
-      </div>
-    </section>
-  </main>
-  
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Nhóm 4 - Bài tập cuối khóa CITT2 </p>
-  </footer>
-
+    </footer>
+    <script src="today.js"></script>
 </body>
 </html>
