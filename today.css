@@ -1,201 +1,135 @@
-/* Reset mặc định */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Biến màu */
-:root {
-  --primary-color: #0056b3;
-  --hover-color: #007bff;
-  --header-gradient: linear-gradient(to right, #4dd0e1, #80cbc4);
-  --background-gradient: linear-gradient(to top, #e6f7ff, #b3d9ff, #66a3ff);
-  --white-transparent: rgba(255, 255, 255, 0.8);
-  --white-more-transparent: rgba(255, 255, 255, 0.7);
-}
-
-/* Body */
 body {
-  font-family: 'Arial', sans-serif;
-  background: var(--background-gradient);
-  min-height: 100vh;
-  color: #333;
-  transition: background 0.5s ease;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #87CEEB, #B0E0E6);
+    color: #333;
 }
 
-/* Header tổng */
 header {
-  background: var(--header-gradient);
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between; /* Logo bên trái, Nav bên phải */
-  align-items: center; /* Căn giữa chiều cao */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
 .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Khoảng cách giữa icon và chữ */
+    font-size: 24px;
+    font-weight: bold;
 }
 
-/* Nav links */
-.nav-links {
-  display: flex;
-  gap: 2rem; /* Khoảng cách giữa các mục menu */
+nav ul {
+    list-style: none;
+    display: flex;
 }
 
-/* Các link trong nav */
-.nav-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.3s ease;
+nav ul li {
+    margin: 0 15px;
 }
 
-/* Icon */
-.nav-links a i {
-  font-size: 1.2rem;
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
 }
 
-/* Underline */
-.nav-links a span {
-  position: relative;
+nav ul li a:hover {
+    color: #007BFF;
 }
 
-.nav-links a span::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+main {
+    padding: 20px;
 }
 
-.nav-links a.underline span::after,
-.nav-links a:hover span::after {
-  opacity: 1;
-}
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 2rem;
-}
-
-/* Thời tiết hiện tại */
-.current-weather {
-  background: var(--white-transparent);
-  border-radius: 12px;
-  padding: 2rem;
-  display: inline-block;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.current-weather:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Thông tin thời tiết */
 .weather-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-  gap: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.weather-info img {
-  width: 180px;
-  height: 60px;
+.current-weather {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-#temperature {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  transition: color 0.3s ease;
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
 }
 
-#description {
-  color: #555;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.description {
+    font-size: 24px;
+    margin: 10px 0;
 }
 
-#feels-like,
-#humidity,
-#wind-speed {
-  color: #777;
-  font-size: 1rem;
+.humidity, .wind, .feels-like {
+    font-size: 16px;
 }
 
-#current-time {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #888;
+.icon {
+    font-size: 64px;
+    margin-top: 10px;
 }
 
-/* Dự báo theo giờ */
 .hourly-forecast {
-  margin: 20px;
+    margin-top: 20px;
 }
 
-.hourly-forecast h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: var(--primary-color);
+.hourly {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.forecast-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 1rem;
-  justify-items: center;
+.hour {
+    flex: 1 1 80px;
+    text-align: center;
+    margin: 10px;
+    transition: transform 0.3s;
 }
 
-.forecast-hour {
-  background: var(--white-more-transparent);
-  padding: 2rem;
-  border-radius: 12px;
-  text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 4px 10px rgba(0, 0, 0, 0.08);
+.hour:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.forecast-hour img {
-  width: 60px;
-  height: 50px;
+.time {
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.forecast-hour:hover {
-  background: #e6f7ff;
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+.icon {
+    font-size: 32px;
+    margin: 5px 0;
 }
 
-/* Responsive Mobile */
-@media (max-width: 768px) {
-  .weather-info {
-    flex-direction: column;
-    gap: 1rem;
-  }
+.temp {
+    font-size: 18px;
+}
 
-  .forecast-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
+footer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
 }
