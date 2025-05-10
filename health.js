@@ -1,6 +1,6 @@
 const apiKey = 'fcee8e3c23247c9931060785ee8fab70'; // API Key của bạn
-const lat = '10.762622'; // Vĩ độ TP.HCM
-const lon = '106.660172'; // Kinh độ TP.HCM
+const lat = '10.762622'; 
+const lon = '106.660172'; 
 
 // Lấy dữ liệu thời tiết + AQI
 async function getWeatherAndAQI() {
